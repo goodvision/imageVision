@@ -1,0 +1,151 @@
+
+.navbar .navbar-inner {
+        #background-color: ; /* it's flat*/
+        background-image: none;
+      }
+      
+     body {
+	   position: relative;
+		padding-top: 60px;
+		padding-bottom: 40px;
+		background-color: #eee;
+		
+      background-size:cover;
+	 
+	  }
+	  
+	   .jumbotron {
+        margin: 20px 0;
+        text-align: center;
+      }
+      
+      .jumbotron .btn {
+        font-size: 17px;
+        padding: 14px 24px;
+      }
+      .img-circle{
+        width:50px;
+        height:50px;
+        vertical-align: middle;
+      }
+html,
+body {
+        height: 100%;
+        background-color: #eee;
+        /* The html and body elements cannot have any padding or margin. */
+      }
+
+      /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 10px auto 60px;
+      }
+
+      /* Set the fixed height of the footer here */
+      #push,
+      #footer {
+        height: 40px;
+        
+      }
+      #footer {
+        background-color: #cecece;
+      }
+
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+
+
+
+      /* Custom page CSS
+      -------------------------------------------------- */
+      /* Not required for template or sticky footer method. */
+
+      .container {
+        width: auto;
+        max-width: 680px;
+      }
+      .container .credit {
+        margin: 10px 0;
+      }
+  
+  .navbar .navbar-inner {
+        #background-color: ; /* it's flat*/
+        background-image: none;
+      }
+      
+     body {
+	   position: relative;
+		padding-top: 60px;
+		padding-bottom: 40px;
+		/*background-image:url(static/img/bg2.jpg);*/
+      background-size:cover;
+	 
+	  }
+	  
+	   .jumbotron {
+        margin: 20px 0;
+        text-align: center;
+      }
+      
+      .jumbotron .btn {
+        font-size: 17px;
+        padding: 14px 24px;
+      }
+      .img-circle{
+        width:50px;
+        height:50px;
+        vertical-align: middle;
+      }
+
+.mediaDetailContainer{
+box-sizing: border-box;
+width: 780px;
+}
+
+.mediaDetail {
+width: 760px;
+height: 580px;
+border:3px;
+}
+.bigPhoto {
+position: absolute;
+top: 14px;
+left: 14px;
+width: 500px;
+height: 570px;
+float:left;
+border:2px;
+}
+
+.detailSidebar {
+clear:both;
+height: 570px;
+width:50px;
+}
+
+
+.userInfo {
+clear:both;
+padding-bottom: 7px;
+}
+
+
+/*404 500*/
+			div#mother{ margin:0 auto; width:943px; height:572px; position:relative; }
+			div#errorBox{ background: url(static/img/404_bg.png) no-repeat top left; width:943px; height:572px; margin:auto; }
+			div#errorText{ color:#39351e; padding:146px 0 0 446px }
+			div#errorText p{ width:303px; font-size:14px; line-height:26px; }
+			div.link{ /*background:#f90;*/ height:50px; width:145px; float:left; }
+			div#home{ margin:20px 0 0 444px;}
+			div#contact{ margin:20px 0 0 25px;}
+			h1{ font-size:40px; margin-bottom:35px; }

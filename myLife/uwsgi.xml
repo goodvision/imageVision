@@ -1,0 +1,15 @@
+<uwsgi>  
+  <plugins>python</plugins>
+  <socket>0.0.0.0:8000</socket>  
+  <listen>20</listen>  
+  <master>true</master>  
+   
+  <processes>2</processes>  
+  <module>django_wsgi</module>
+  <pythonpath>/home/lpj/myPro/myLife</pythonpath>  
+  <profiler>true</profiler>  
+  <memory-report>true</memory-report>  
+  <enable-threads>true</enable-threads>  
+  <logdate>true</logdate>  
+  <limit-as>6048</limit-as>  
+</uwsgi>    

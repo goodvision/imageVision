@@ -1,0 +1,15 @@
+<style type="text/css">
+.login_btn{display:inline-block;background-repeat:no-repeat;font-size:12px;text-decoration:none;color:#055675;}
+.login_btn00{width:230px;height:48px;background-image:url(http://mat1.gtimg.com/app/opent/images/websites/login/login_icon_1.png);}
+.login_btn01{width:170px;height:32px;background-image:url(http://mat1.gtimg.com/app/opent/images/websites/login/login_icon_2.png);}
+.login_btn02{width:120px;height:24px;background-image:url(http://mat1.gtimg.com/app/opent/images/websites/login/login_icon_3.png);}
+.login_btn03{width:105px;height:16px;background-image:url(http://mat1.gtimg.com/app/opent/images/websites/login/login_icon_4.png);}
+        .login_btn10{padding-left:20px;background-image:url(http://mat1.gtimg.com/app/opent/images/websites/share/weiboicon16.png);}
+        .login_btn20{}
+        img{border:none;vertical-align:middle;}
+        .logout_btn{display:none;margin:0px;padding:0px;font-size:12px;line-height:1.75;font-family:Arial,Helvetica,sans-serif;vertical-align:middle;color:rgb(100,100,100,);}
+        .head_img{display:inline-block;vertical-align:middle;}
+        .head_img img{vertical-align:middle;}
+        .logout_right{display:inline-block;vertical-align:middle;}
+        .nick_text{display:inline-block;margin-left:4px;text-decoration:initial;color:rgb(0,120,182);}
+        .logout_text{margin-left:5px;vertical-align:middle;text-decoration:initial;color:rgb(153,153,153);cursor:pointer;}

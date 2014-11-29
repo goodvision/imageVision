@@ -1,0 +1,202 @@
+
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en"> <!--html5-->
+  <head>
+    <meta property="wb:webmaster" content="217871968dda01f4" />
+    <meta charset="utf-8">
+    <title>看图说话</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <!--<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">-->
+    <link href="{%static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/home.css' %}" rel="stylesheet">
+    <link href="{% static 'css/weibo.css' %}" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="{% static 'js/jquery_form.js' %}"></script>
+    <script src="{% static 'js/jquery.cookie.js'%}"></script>
+    <script type="text/javascript">
+       $(document).ready(function () {
+
+	        $(window).scroll(function() {
+              if ($(window).scrollTop() > 700)
+                $('div.go-top').show();
+              else
+                $('div.go-top').hide();
+           });
+          $('div.go-top').click(function() {
+            $('html, body').animate({scrollTop: 0}, 500);
+          });
+          
+         $('#upMyPhoto').click(function () {
+             
+            var sinUser = $.cookie('loginUser');
+	         if(sinUser == null || sinUser == ""){
+                   $('#systemWarn').attr('class','alert alert-error');
+                   $('#systemWarn').text('对不起,您还没有登录不能上传图片,点击右上角使用腾讯微薄登录');
+                   $('#upSuccess').modal('show') ;
+                   return;	         
+	         }else {
+	             $('#loginAction').modal('show')
+            }
+            
+         })
+		 
+          $('#submit_photo').click(function () {
+			   $(this).attr('disabled',true);
+			   $(this).attr('value',"上传中,请稍等…………")
+               $('#upForm').ajaxForm({
+                   success:function () {
+	                   $('#loginAction').modal('hide');
+	                   $('#upForm').resetForm();
+					       $("#submit_photo").attr('value',"提交")
+					       $("#submit_photo").attr('disabled',false);
+	                   $('body').load('/page/pagenum=1')
+                   }
+               })
+
+
+          })
+
+             $("#{{pagenum}}").addClass('active');
+	
+	
+	
+          
+   })
+    </script>
+    <style type="text/css">
+      
+     body {
+	   position: relative;
+		padding-top: 60px;
+		padding-bottom: 40px;
+		background-color: #eee;
+		
+      background-size:cover;
+	 
+	  }
+
+    </style>
+    <script src="http://mat1.gtimg.com/app/openjs/openjs.js"></script>
+ 
+    	    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+<!--jquery-->
+
+
+  </head>
+
+  <body>
+    <!--导航条-->
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container-fluid">
+           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+           </a>
+           
+           <a href="/" class="brand">首页</a>
+            <div class="nav-collapse collapse">
+             <form class="navbar-search pull-left">
+               <input type="text" class="search-query" placeholder="你的朋友"> <i class="icon-search"></i>     
+             </form>
+          
+             <div class="pull-right">
+                 <div class="qq_account_log" style="margin-top:10px;" id="qq_account_log">
+                  <a class="login_btn login_btn02" id="login_btn" href="javascript:;">
+                  </a>
+                 <div class="logout_btn" id="logout_btn"></div>
+                 </div>               
+             </div>
+           </div>
+          </div>
+        </div>
+      </div>       
+   
+    {%block content%}
+    {%endblock%}
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">这是一个简单的SAE,<a href="https://www.djangoproject.com/">django</a>项目
+      </div>
+    </div>
+    <!--返回顶部-->    
+    <div class="go-top">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+    </div>
+    
+
+
+ </div>
+
+    <!--<script src="js/bootstrap.min.js"></script>-->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script defer="defer">
+var login_btn = document.getElementById("login_btn"),
+logout_btn = document.getElementById("logout_btn");
+function login(){
+T.login(function(loginStatus){
+getUserInfo();
+login_btn.style.display = "none"
+logout_btn.style.display = "inline-block";
+},function(loginError){
+alert(loginError.message);
+});
+}
+function logout(){
+logout_btn.style.display = "none";
+login_btn.style.display = "inline-block";
+T.logout();
+var expires = new Date(); 
+expires.setTime(expires.getTime()-1);//将expires设为一个过去的日期，浏览器会自动删除它
+document.cookie = 'loginUser'+"=; expires="+expires.toGMTString(); 
+}
+function getUserInfo(){
+T.api("/user/info")
+.success(function(response){
+if(response.ret === 0){
+var html="",data=response.data;
+imgsrc = data.head+"/30";
+document.getElementById('nick').value = data.nick;
+document.getElementById('openid').value = data.openid;
+document.getElementById('head').value = data.head+"/40";;
+html = '<a class="head_img" href="http://t.qq.com/'+ data.name +'" target="_blank"><img src="'+ imgsrc +'" style="margin-bottom:5px;"/></a><span class="logout_right"><a class="nick_text" href="http://t.qq.com/' + data.name +'" target="_blank" title="'+data.nick +'">'+ data.nick +'</a><a class="logout_text" id="logout_text"　href="javascript:void(0);">退出</a></span>';
+logout_btn.innerHTML = html;
+var logout_text = document.getElementById("logout_text");
+logout_text.onclick = logout;
+document.cookie="loginUser="+data.nick;
+}else{
+              alert(response.ret);
+}
+})
+.error(function(code,message){
+alert(message);
+});
+}
+function init(){
+T.init({appkey:801513636});
+if(!T.loginStatus()){
+login_btn.style.display = "inline-block";
+logout_btn.style.display = "none";
+}else{
+getUserInfo();
+login_btn.style.display = "none";
+logout_btn.style.display = "inline-block";
+}
+login_btn.onclick = login;
+}
+init();
+</script>
+  </body>
+</html>

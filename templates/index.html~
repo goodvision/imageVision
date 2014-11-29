@@ -1,0 +1,102 @@
+{%extends "base.html"%}
+{%block content%}
+    <div id="wrap">
+      <div class="jumbotron">
+      <div class="container">
+        <p class="lead">    
+          photoUp photoMe! 
+        </p>
+        &nbsp;<strong>托管地址</strong>
+        <a class="btn btn-link" href="https://github.com/lpj24/myPro">lpj24@Github</a><br/>
+        <button type="button" class="btn btn-large btn-success" id="upMyPhoto">上传我的图片</button>
+        </div>
+      </div>   
+
+    <div class="container-fluid" id="content">
+    
+     <div class="row-fluid">
+      <ul class="thumbnails">
+       {% for item in photo_list%}
+       <li style="width:23%;">
+        <div class="thumbnail">
+         
+          <img src={{item.headpath}} style="margin-left:10px;margin-right:20px;margin-bottom:5px;" class="img-circle" align="left"><br/>
+          <p style="float:left;margin-right:45px;">{{item.nickname}}</p>
+          <a href="/download/filepath={{item.inputimage}})"><button id="download" class="btn btn-primary" style="margin-bottom:10px;">下载图片</button></a>
+          <img style="height:280px;margin:auto 0px;padding:auto 0px" id="put_comment"
+           src="{{item.inputimage}}" data-placement="right" data-toggle='tooltip' data-original-title="点击评论">
+          <p class="text-left" style="margin-left:20px;margin-top:10px;"><b>{{item.describetion}}</b></p>
+          <p class="text-right">{{item.uploadDate|date:'Y-m-d H:i:s'}}</p>
+        
+        </div>
+       </li>  
+         {%endfor%}
+      </ul>
+    </div>    
+    
+   </div>
+   <div class="pagination pagination-large pagination-centered" >
+     <ul>
+         {%ifnotequal prepage 0%}
+         <li id="prepage"><a href="/page/pagenum={{prepage}}">上一页</a></li>
+         {%endifnotequal%}
+         {%for i in totalPageNumlist%}
+           <li id="{{i}}"><a href="/page/pagenum={{i}}">{{i}}</a></li>
+         {%endfor%}
+         {%ifnotequal nextpage -1%}
+         <li id="nextpage"><a href="/page/pagenum={{nextpage}}">下一页</a></li>
+         {%endifnotequal%}
+     </ul>
+   </div>
+
+    <div class="push"></div>
+  </div>
+    
+    
+    <!--模态对话框-->
+    <div id="loginAction" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+     <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel" >
+        上传你的图片             
+      </h3>
+     </div>
+     <div class="modal-body">     
+     
+       <form class="form-horizontal" action="/fileUp/" method="post" enctype="multipart/form-data"  id="upForm">
+       {% csrf_token %}
+        <div class="control-group">
+          <div class="controls">
+            <input class="btn-primary" type="file" name="inputImage" id="inputImage" title="浏览" style="left: -78.5px; top: 2.5px;" required />
+            <input name="nick" type="text" style="display:none" id="nick"/>
+            <input name="openid" type="text" style="display:none" id="openid"/>
+            <input name="head" type="text" style="display:none" id="head"/>
+           </div>
+         </div>
+         <div class="control-group">
+          <div class="controls">
+            <textarea rows="3" name="describe" id="describe" placeholder=“写下你的描述” required></textarea>
+           </div>
+         </div>
+         <div class="control-group">
+          <div class="controls">
+            <input type="submit" id="submit_photo" class="btn btn-large btn-primary" data-loading-text="上传中……………" value="提交"/>
+           </div>
+         </div>
+        </form>
+       </div>
+     </div>
+     
+     <!--弹出框提示-->
+    <div id="upSuccess" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+     <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel" >
+        系统提示           
+      </h3>
+     </div>
+     <div class="modal-body">     
+        <div id="systemWarn" class="alert alert-success"></div>
+     </div>
+     </div>
+{%endblock%}
